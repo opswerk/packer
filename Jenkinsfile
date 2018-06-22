@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('build') {
       steps {
-        tool 'packer'
+        tool(name: 'packer', type: 'Build AMI')
         sh '''export ${AWS_ACCESS_KEY_ID}
 export ${AWS_SECRET_ACCESS_KEY}
 export ${AWS_DEFAULT_REGION}
