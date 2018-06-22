@@ -11,7 +11,9 @@ pwd
 echo $AWS_ACCESS_KEY_ID
 echo $AWS_SECRET_ACCESS_KEY
 echo $AWS_DEFAULT_REGION
-/bin/packer build ${WORKSPACE}/centos7_opswerk.json'''
+#/bin/packer build ${WORKSPACE}/centos7_opswerk.json
+
+echo \'/bin/packer build ${WORKSPACE}/centos7_opswerk.json\''''
       }
     }
     stage('deploy-infra-dev') {
