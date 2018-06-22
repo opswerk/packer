@@ -8,10 +8,10 @@ pipeline {
 export ${AWS_SECRET_ACCESS_KEY}
 export ${AWS_DEFAULT_REGION}
 ls -altr
+pwd
 echo $AWS_ACCESS_KEY_ID
 echo $AWS_SECRET_ACCESS_KEY
-echo $AWS_DEFAULT_REGION
-packer build centos7_opswerk.json'''
+echo $AWS_DEFAULT_REGION'''
       }
     }
   }
