@@ -14,5 +14,10 @@ echo $AWS_DEFAULT_REGION
 /bin/packer build ${WORKSPACE}/centos7_opswerk.json'''
       }
     }
+    stage('deploy-infra-dev') {
+      steps {
+        sh 'terraform --version'
+      }
+    }
   }
 }
