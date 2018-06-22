@@ -3,7 +3,6 @@ pipeline {
   stages {
     stage('build') {
       steps {
-        tool(name: 'packer', type: 'packer')
         sh '''export ${AWS_ACCESS_KEY_ID}
 export ${AWS_SECRET_ACCESS_KEY}
 export ${AWS_DEFAULT_REGION}
@@ -12,7 +11,7 @@ pwd
 echo $AWS_ACCESS_KEY_ID
 echo $AWS_SECRET_ACCESS_KEY
 echo $AWS_DEFAULT_REGION
-packer build ${WORKSPACE}/centos7_opswerk.json'''
+/bin/packer build ${WORKSPACE}/centos7_opswerk.json'''
       }
     }
   }
