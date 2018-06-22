@@ -16,7 +16,7 @@ echo $AWS_DEFAULT_REGION
     }
     stage('deploy-infra-dev') {
       steps {
-        sh 'terraform --version'
+        sh 'aws ec2 describe-images --filters "Name=tag:Name,Values=centos" --query \'Images[*].{ID:ImageId}\' --output text'
       }
     }
   }
