@@ -18,7 +18,7 @@ echo \'/bin/packer build ${WORKSPACE}/centos7_opswerk.json\''''
     }
     stage('deploy-infra-dev') {
       steps {
-        sh 'aws ec2 describe-images --filters "Name=tag:Name,Values=centos" --query \'Images[*].{ID:ImageId}\' --output text'
+        sh 'aws ec2 describe-images --filters "Name=tag:Name,Values=centos" --query \'Images[*].{ID:ImageId}\' --region us-east-1 --output text'
       }
     }
   }
