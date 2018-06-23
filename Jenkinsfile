@@ -26,8 +26,8 @@ echo "ami_id = "${AMI_ID}"">>${WORKSPACE}/config/terraform/terraform.tfvars
 echo "ami_id = "${AMI_ID}""
 cd ${WORKSPACE}/config/terraform
 terraform init -input=false
-terraform plan -out=tfplan -input=false
-terraform apply -input=false tfplan'''
+#terraform plan -out=tfplan -input=false
+#terraform apply -input=false tfplan'''
       }
     }
   }
