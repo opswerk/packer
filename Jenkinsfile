@@ -25,8 +25,8 @@ AMI_ID=$(aws ssm get-parameters --names "ami_id" --output json | jq -r ".Paramet
 echo "ami_id = \\"${AMI_ID}\\"">>${WORKSPACE}/config/terraform/terraform.tfvars
 cd ${WORKSPACE}/config/terraform
 terraform init -input=false
-terraform plan -input=false
-terraform apply -input=false'''
+terraform plan -out=tfplan -input=false
+terraform apply -input=false tfplan'''
       }
     }
   }
