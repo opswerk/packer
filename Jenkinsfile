@@ -19,9 +19,10 @@ aws ssm put-parameter --name "ami_id" --value "${AMI_ID}" --type String --overwr
         sh '''export ${AWS_ACCESS_KEY_ID}
 export ${AWS_SECRET_ACCESS_KEY}
 export ${AWS_DEFAULT_REGION}
-AMI_ID=$(aws ec2 describe-images --filters "Name=tag:Name,Values=centos" --query \'Images[*].{ID:ImageId}\' --region us-east-1 --output text)
-aws ssm put-parameter --name "ami_id" --value "${AMI_ID}" --type String
-echo ${AMI_ID}
+
+AMI_ID=$(aws ssm get-parameters --names "ami_id")
+
+echo "ami_id = "${AMI_ID}"">>${WORKSPACE}/config/terraform/terraform.tfvars
 cd ${WORKSPACE}/config/terraform
 terraform init
 terraform apply'''
