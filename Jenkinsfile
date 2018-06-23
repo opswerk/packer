@@ -16,17 +16,17 @@ rm -f output.txt
     }
     stage('deploy-infra-dev') {
       steps {
-        sh '''#export ${AWS_ACCESS_KEY_ID}
-#export ${AWS_SECRET_ACCESS_KEY}
-#export ${AWS_DEFAULT_REGION}
+        sh '''export ${AWS_ACCESS_KEY_ID}
+export ${AWS_SECRET_ACCESS_KEY}
+export ${AWS_DEFAULT_REGION}
 
 AMI_ID=$(aws ssm get-parameters --names "ami_id" --output json | jq -r ".Parameters[] | .Value")
 
 echo "ami_id = ${AMI_ID}">>${WORKSPACE}/config/terraform/terraform.tfvars
 cd ${WORKSPACE}/config/terraform
 terraform init -input=false
-terraform plan -out=tfplan -input=false
-#terraform apply -input=false tfplan'''
+terraform plan -input=false
+#terraform apply -input=false'''
       }
     }
   }
