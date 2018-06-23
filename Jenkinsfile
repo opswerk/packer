@@ -23,7 +23,6 @@ export ${AWS_DEFAULT_REGION}
 AMI_ID=$(aws ssm get-parameters --names "ami_id" --output json | jq -r ".Parameters[] | .Value")
 
 echo "ami_id = ${AMI_ID}">>${WORKSPACE}/config/terraform/terraform.tfvars
-echo "ami_id = "${AMI_ID}""
 cd ${WORKSPACE}/config/terraform
 terraform init -input=false
 #terraform plan -out=tfplan -input=false
