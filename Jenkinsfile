@@ -20,7 +20,7 @@ aws ssm put-parameter --name "ami_id" --value "${AMI_ID}" --type String --overwr
 export ${AWS_SECRET_ACCESS_KEY}
 export ${AWS_DEFAULT_REGION}
 
-AMI_ID=$(aws ssm get-parameters --names "ami_id")
+AMI_ID=$(aws ssm get-parameters --names "ami_id" --output json | jq -r ".Parameters[] | .Value")
 
 echo "ami_id = "${AMI_ID}"">>${WORKSPACE}/config/terraform/terraform.tfvars
 cd ${WORKSPACE}/config/terraform
