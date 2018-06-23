@@ -28,7 +28,7 @@
             "ssh_username": "{{user `ssh_username`}}",
             "associate_public_ip_address": true,
             "tags": {
-                "Name": "CentOS 7",
+                "Name": "centos",
                 "OS": "CentOS",
                 "OSVER": "7"
             },
