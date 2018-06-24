@@ -3,6 +3,12 @@ pipeline {
   stages {
     stage('build-ami') {
       steps {
+        sh '''sudo /root/sonar-scanner-3.2.0.1227-linux/bin/sonar-scanner \\
+  -Dsonar.projectKey=m00nbeam \\
+  -Dsonar.organization=opswerk-github \\
+  -Dsonar.sources=. \\
+  -Dsonar.host.url=https://sonarcloud.io \\
+  -Dsonar.login=4547c3161092741a3bf9ec954e0601cc173569d8'''
         sh '''export ${AWS_ACCESS_KEY_ID}
 export ${AWS_SECRET_ACCESS_KEY}
 export ${AWS_DEFAULT_REGION}
