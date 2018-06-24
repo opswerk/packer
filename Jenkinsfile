@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('build-ami') {
       steps {
-        sh '''cd /etc/sonarqube/bin/linux-x86-64/
+        sh '''cd /root/sonar-scanner-3.2.0.1227-linux/bin
 
 ./sonar-scanner \\
   -Dsonar.projectKey=m00nbeam \\
