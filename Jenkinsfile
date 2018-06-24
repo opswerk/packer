@@ -3,9 +3,7 @@ pipeline {
   stages {
     stage('build-ami') {
       steps {
-        sh '''cd /root/sonar-scanner-3.2.0.1227-linux/bin
-
-./sonar-scanner \\
+        sh '''sudo /root/sonar-scanner-3.2.0.1227-linux/bin/sonar-scanner \\
   -Dsonar.projectKey=m00nbeam \\
   -Dsonar.organization=opswerk-github \\
   -Dsonar.sources=. \\
