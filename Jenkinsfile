@@ -12,6 +12,7 @@ rm -f output.txt
 AMI_ID=$(tail -2 output.txt | head -2 | awk \'match($0, /ami-.*/) { print substr($0, RSTART, RLENGTH) }\')
 aws ssm put-parameter --name "ami_id" --value "${AMI_ID}" --type String --overwrite
 '''
+        git(poll: true, url: 'git@github.com:opswerk/packer.git', branch: 'master', changelog: true)
       }
     }
     stage('deploy-infra-dev') {
