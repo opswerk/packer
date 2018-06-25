@@ -1,10 +1,5 @@
 pipeline {
   agent any
-  parameters {
-     choice(name: 'ENVIRO', 
-       choices: 'dev\nuat\nprod',
-       description: 'Which environment would you like to deploy to (ex. dev, uat, prod')
-  }
   stages {
     stage('build-ami') {
       steps {
@@ -41,13 +36,27 @@ terraform apply -input=false tfplan'''
         sh '''#!/bin/bash
 if [[ ${ENVIRO} == "dev" ]]
 then
-  echo "I like kitties"
+  echo "I like kitties cuz ${ENVIRO}"
+fi
+if [[ ${ENVIRO} == "prod" ]]
+then
+  echo "I hate kitties cuz ${ENVIRO}"
+fi
+if [[ ${ENVIRO} == "uat" ]]
+then
+  echo "I don\'t know if I like kitties cuz ${ENVIRO}"
+fi
+if [[ ${ENVIRO} != "dev" ]] ||  [[ ${ENVIRO} != "uat" ]] ||  [[ ${ENVIRO} != "prod" ]]
+then
+  echo "I don\'t know what just happened"
 fi
 '''
-
-
       }
     }
-
+  }
+  parameters {
+    choice(name: 'ENVIRO', choices: '''dev
+uat
+prod''', description: 'Which environment would you like to deploy to (ex. dev, uat, prod')
   }
 }
