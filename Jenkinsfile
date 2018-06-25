@@ -1,7 +1,7 @@
 pipeline {
   agent any
   stages {
-    stage('build-ami') {
+    stage('test') {
       steps {
         sh '''sudo /root/sonar-scanner-3.2.0.1227-linux/bin/sonar-scanner \\
   -Dsonar.projectKey=m00nbeam \\
@@ -9,6 +9,10 @@ pipeline {
   -Dsonar.sources=. \\
   -Dsonar.host.url=https://sonarcloud.io \\
   -Dsonar.login=4547c3161092741a3bf9ec954e0601cc173569d8'''
+      }
+    }
+    stage('build AMI') {
+      steps {
         sh '''export ${AWS_ACCESS_KEY_ID}
 export ${AWS_SECRET_ACCESS_KEY}
 export ${AWS_DEFAULT_REGION}
@@ -20,7 +24,7 @@ aws ssm put-parameter --name "ami_id" --value "${AMI_ID}" --type String --overwr
 '''
       }
     }
-    stage('deploy-infra-dev') {
+    stage('build elastic beanstalk') {
       steps {
         sh '''export ${AWS_ACCESS_KEY_ID}
 export ${AWS_SECRET_ACCESS_KEY}
@@ -33,7 +37,7 @@ cd ${WORKSPACE}/config/terraform
 terraform init -input=false
 terraform plan -out=tfplan -input=false
 terraform apply -input=false tfplan'''
-        cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenSuccess: true, cleanWhenUnstable: true, cleanupMatrixParent: true, deleteDirs: true)
+        cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenUnstable: true, cleanWhenSuccess: true, cleanupMatrixParent: true, deleteDirs: true)
       }
     }
   }
