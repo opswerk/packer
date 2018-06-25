@@ -1,11 +1,18 @@
 pipeline {
   agent any
+  parameters {
+     choice(name: 'ENVIRO', 
+       choices: 'dev\vuat\nprod'
+       defaultValue: 'dev', 
+       description: 'Which environment would you like to deploy to (ex. dev, uat, prod')
+  }
   stages {
     stage('build-ami') {
       steps {
         sh '''export ${AWS_ACCESS_KEY_ID}
 export ${AWS_SECRET_ACCESS_KEY}
 export ${AWS_DEFAULT_REGION}
+echo "${ENVIRO}"
 
 rm -f output.txt
 /bin/packer build -force ${WORKSPACE}/centos7_opswerk.json 2>&1 | tee output.txt
