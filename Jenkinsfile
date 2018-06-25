@@ -2,7 +2,7 @@ pipeline {
   agent any
   parameters {
      choice(name: 'ENVIRO', 
-       choices: 'dev\nuat\nprod'
+       choices: 'dev\nuat\nprod',
        description: 'Which environment would you like to deploy to (ex. dev, uat, prod')
   }
   stages {
