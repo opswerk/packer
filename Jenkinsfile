@@ -3,7 +3,6 @@ pipeline {
   parameters {
      choice(name: 'ENVIRO', 
        choices: 'dev\nuat\nprod'
-       defaultValue: 'dev', 
        description: 'Which environment would you like to deploy to (ex. dev, uat, prod')
   }
   stages {
