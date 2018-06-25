@@ -36,5 +36,18 @@ terraform apply -input=false tfplan'''
         cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenSuccess: true, cleanWhenUnstable: true, cleanupMatrixParent: true, deleteDirs: true)
       }
     }
+    stage('print-infra') {
+      steps {
+        sh '''#!/bin/bash
+if [[ ${ENVIRO} == "dev" ]]
+then
+  echo "I like kitties"
+fi
+'''
+
+
+      }
+    }
+
   }
 }
