@@ -1,13 +1,6 @@
 pipeline {
   agent any
   parameters {
-    
-    choice(name: 'ENVIRO', 
-           choices: '''dev
-uat
-prod''', 
-           description: 'Which environment would you like to deploy to?)
-           
     string(name: 'VERSION', 
         description: 'Which version would you like to deploy?')
   }
