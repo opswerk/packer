@@ -57,8 +57,8 @@ fi
   parameters {
     choice(name: 'ENVIRO', choices: '''dev
 uat
-prod''', description: 'Which environment would you like to deploy to (ex. dev, uat, prod')
-    str(name: 'VERSION', 
-        description: 'Which version would you like to deploy?'
+prod''', description: 'Which environment would you like to deploy to (ex. dev, uat, prod'))
+    string(name: 'VERSION', 
+        description: 'Which version would you like to deploy?')
   }
 }
