@@ -1,5 +1,17 @@
 pipeline {
   agent any
+  parameters {
+    
+    choice(name: 'ENVIRO', 
+           choices: '''dev
+uat
+prod''', 
+           description: 'Which environment would you like to deploy to?)
+           
+    string(name: 'VERSION', 
+        description: 'Which version would you like to deploy?')
+  }
+           
   stages {
     stage('build-ami') {
       steps {
@@ -53,12 +65,5 @@ fi
 '''
       }
     }
-  }
-  parameters {
-    choice(name: 'ENVIRO', choices: '''dev
-uat
-prod''', description: 'Which environment would you like to deploy to (ex. dev, uat, prod'))
-    string(name: 'VERSION', 
-        description: 'Which version would you like to deploy?')
   }
 }
