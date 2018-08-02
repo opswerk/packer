@@ -6,6 +6,15 @@ pipeline {
   }
            
   stages {
+      stage('Decide tag on Docker Hub') {
+        agent none
+        steps {
+          script {
+            env.TAG_ON_DOCKER_HUB = input message: 'User input required',
+                parameters: [choice(name: 'Tag on Docker Hub', choices: 'no\nyes', description: 'Choose "yes" if you want to deploy this build')]
+          }
+        }
+       }
     stage('build-ami') {
       steps {
         sh '''export ${AWS_ACCESS_KEY_ID}
